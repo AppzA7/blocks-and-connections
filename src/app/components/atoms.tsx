@@ -28,11 +28,13 @@ export const addBlockAtom = atom(
     }
 )
 
-export const topBlockAtomId = atom("");
+export const topBlockIdAtom = atom<string>("");
 
 export const updateTopBlockAtom = atom(null,
     (get, set, id: string) => {
-        set(topBlockAtomId, id);
+        const currentTopBlockId = get(topBlockIdAtom);
+        if(currentTopBlockId === id) return;
+        set(topBlockIdAtom, id);
         set(writeAuditLogAtom, "Top block is now " + id)
     }
 );

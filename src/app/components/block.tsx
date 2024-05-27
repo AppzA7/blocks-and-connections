@@ -5,18 +5,15 @@ import { Rnd } from 'react-rnd';
 import Child from './sample-child';
 import ConnectorPoint from './connector-point';
 import { useAtomValue, useSetAtom } from 'jotai';
-import { topBlockAtomId, updateTopBlockAtom } from './atoms';
+import { topBlockIdAtom, updateTopBlockAtom } from './atoms';
 
 interface Props {
     id: string;
 }
 const Block = (props: Props) => {
 
-    const topBlockId = useAtomValue(topBlockAtomId)
+    const topBlockId = useAtomValue(topBlockIdAtom)
     const updateTopBlock = useSetAtom(updateTopBlockAtom);
-    const bringToFrontHandler = () => {
-
-    }
 
     return(
         <Rnd
@@ -24,7 +21,7 @@ const Block = (props: Props) => {
             minWidth={'100px'}
             bounds={"parent"}
             dragHandleClassName='drag-handle'
-            className={`outline rounded-lg overflow-hidden ${topBlockId === props.id ? 'z-10' : 'z-0'}`}
+            className={`outline rounded-lg overflow-hidden ${topBlockId === props.id ? 'z-10 outline-4' : 'z-0'}`}
             key={`rnd-${props.id}`}
             onMouseDown={()=> updateTopBlock(props.id)}
             >

@@ -24,7 +24,6 @@ export default function Home() {
         <AuditLogs/>
       </Sidebar>
       <main className="relative w-full h-full p-4 m-1 outline outline-dotted">
-        <Block id="First-block"></Block>
         {
           blocks.map((block) => {
             return block.block;
