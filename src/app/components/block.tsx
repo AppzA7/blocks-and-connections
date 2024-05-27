@@ -1,6 +1,6 @@
 "use client";
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Rnd } from 'react-rnd';
 import Child from './sample-child';
 import ConnectorPoint from './connector-point';
@@ -8,12 +8,23 @@ import { useAtomValue, useSetAtom } from 'jotai';
 import { topBlockIdAtom, updateTopBlockAtom } from './atoms';
 
 interface Props {
-    id: string;
+    id: number;
 }
 const Block = (props: Props) => {
 
     const topBlockId = useAtomValue(topBlockIdAtom)
     const updateTopBlock = useSetAtom(updateTopBlockAtom);
+
+
+    const [zindex, setzindex] = useState(0);
+
+    useEffect(()=> {
+        if(topBlockId !== props.id) {
+            setzindex(Math.max(0, zindex-1));
+        } else {
+            setzindex(10);
+        }
+    }, [topBlockId])
 
     return(
         <Rnd
@@ -21,8 +32,11 @@ const Block = (props: Props) => {
             minWidth={'100px'}
             bounds={"parent"}
             dragHandleClassName='drag-handle'
-            className={`outline rounded-lg overflow-hidden ${topBlockId === props.id ? 'z-10 outline-4' : 'z-0'}`}
+            className={`outline rounded-lg overflow-hidden ${topBlockId === props.id ? 'outline-4': ''}`}
             key={`rnd-${props.id}`}
+            style={{
+                zIndex: zindex
+            }}
             onMouseDown={()=> updateTopBlock(props.id)}
             >
             <div className='cursor-move text-center h-7 w-full bg-yellow-200 flex select-none' >

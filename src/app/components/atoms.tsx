@@ -28,10 +28,10 @@ export const addBlockAtom = atom(
     }
 )
 
-export const topBlockIdAtom = atom<string>("");
+export const topBlockIdAtom = atom<number>(0);
 
 export const updateTopBlockAtom = atom(null,
-    (get, set, id: string) => {
+    (get, set, id: number) => {
         const currentTopBlockId = get(topBlockIdAtom);
         if(currentTopBlockId === id) return;
         set(topBlockIdAtom, id);
