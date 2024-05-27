@@ -41,7 +41,7 @@ const Block = (props: Props) => {
             >
             <div className='cursor-move text-center h-7 w-full bg-yellow-200 flex select-none' >
                 <ConnectorPoint key={`left-connector-${props.id}`} id={`left-connector-${props.id}`}></ConnectorPoint>
-                <div className='drag-handle flex-1'>{props.id}</div>
+                <div className='drag-handle flex-1'>block - {props.id}</div>
                 <ConnectorPoint key={`right-connector-${props.id}`} id={`right-connector-${props.id}`}></ConnectorPoint>
             </div>
             <div className='w-full h-full p-4 outline rounded-xl text-centered overflow-auto bg-emerald-50 '>

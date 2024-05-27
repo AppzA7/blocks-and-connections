@@ -13,7 +13,7 @@ const CreateBlock = () => {
     const writeAuditLog = useSetAtom(writeAuditLogAtom);
 
     const clickHandler = () => {
-        addBlock(<Block id={`block-${currentId}`}/>)
+        addBlock(<Block id={currentId}/>)
     }
 
     return (
